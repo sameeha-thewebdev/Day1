@@ -14,18 +14,21 @@ const TodoWrapper = () => {
   }, []);
   
   const addTodo = (todo) => {
-    setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
+    const newTodos = [...todos, {id: uuidv4(), task: todo, completed: false}]
+    setTodos(newTodos)
     console.log(todos)
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   const toggleComplete = (id) => {
-    setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo))
+    const newTodos = todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo)
+    setTodos(newTodos)
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id))
+    const newTodos = todos.filter(todo => todo.id !== id)
+    setTodos(newTodos)
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
